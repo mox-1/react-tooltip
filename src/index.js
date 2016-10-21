@@ -288,16 +288,21 @@ class ReactTooltip extends Component {
    */
   updateTooltip (e) {
     const {delayShow, show, isEmptyTip, disable} = this.state
-    const {afterShow} = this.props
-    let {placeholder} = this.state
+    const {afterShow, children, multiline} = this.props
     const delayTime = show ? 0 : parseInt(delayShow, 10)
     const eventTarget = e.currentTarget
+
+    const originTooltip = e.currentTarget.getAttribute('data-tip')
+    const isMultiline = e.currentTarget.getAttribute('data-multiline') || multiline || false
+    const placeholder = getTipContent(originTooltip, children, content, isMultiline)
+
 
     if (isEmptyTip || disable) return // if the tooltip is empty, disable the tooltip
     const updateState = () => {
       if (Array.isArray(placeholder) && placeholder.length > 0 || placeholder) {
         const isInvisible = !this.state.show
         this.setState({
+          placeholder,
           currentEvent: e,
           currentTarget: eventTarget,
           show: true
