@@ -660,7 +660,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
 
       var originTooltip = e.currentTarget.getAttribute('data-tip');
       var isMultiline = e.currentTarget.getAttribute('data-multiline') || multiline || false;
-      var placeholder = (0, _getTipContent2.default)(originTooltip, children, null, isMultiline);
+      var placeholder = (0, _getTipContent2.default)(originTooltip, children, undefined, isMultiline);
 
       if (isEmptyTip || disable) return; // if the tooltip is empty, disable the tooltip
       var updateState = function updateState() {
