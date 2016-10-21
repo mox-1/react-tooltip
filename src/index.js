@@ -294,8 +294,7 @@ class ReactTooltip extends Component {
 
     const originTooltip = e.currentTarget.getAttribute('data-tip')
     const isMultiline = e.currentTarget.getAttribute('data-multiline') || multiline || false
-    const placeholder = getTipContent(originTooltip, children, content, isMultiline)
-
+    const placeholder = getTipContent(originTooltip, children, null, isMultiline)
 
     if (isEmptyTip || disable) return // if the tooltip is empty, disable the tooltip
     const updateState = () => {

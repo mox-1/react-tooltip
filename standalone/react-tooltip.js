@@ -650,11 +650,17 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       var show = _state.show;
       var isEmptyTip = _state.isEmptyTip;
       var disable = _state.disable;
-      var afterShow = this.props.afterShow;
-      var placeholder = this.state.placeholder;
+      var _props4 = this.props;
+      var afterShow = _props4.afterShow;
+      var children = _props4.children;
+      var multiline = _props4.multiline;
 
       var delayTime = show ? 0 : parseInt(delayShow, 10);
       var eventTarget = e.currentTarget;
+
+      var originTooltip = e.currentTarget.getAttribute('data-tip');
+      var isMultiline = e.currentTarget.getAttribute('data-multiline') || multiline || false;
+      var placeholder = (0, _getTipContent2.default)(originTooltip, children, null, isMultiline);
 
       if (isEmptyTip || disable) return; // if the tooltip is empty, disable the tooltip
       var updateState = function updateState() {
@@ -662,6 +668,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
           (function () {
             var isInvisible = !_this6.state.show;
             _this6.setState({
+              placeholder: placeholder,
               currentEvent: e,
               currentTarget: eventTarget,
               show: true
