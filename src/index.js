@@ -116,7 +116,7 @@ class ReactTooltip extends Component {
     if (isChanged) {
       this.setState({ ariaProps: newAriaProps })
     }
-    if (updateContent && typeof this.props.getContent === 'function') {
+    if (this.props.updateContent && typeof this.props.getContent === 'function') {
       const placeholder = this.props.getContent()
       const isEmptyTip = typeof placeholder === 'string' && placeholder === '' || placeholder === null
       this.setState({
@@ -296,8 +296,8 @@ class ReactTooltip extends Component {
    * When mouse hover, updatetooltip
    */
   updateTooltip (e) {
-    const {delayShow, show, isEmptyTip, disable} = this.state
-    const {afterShow, multiline} = this.props
+    const {delayShow, show, placeholder, isEmptyTip, disable} = this.state
+    const {afterShow} = this.props
     const delayTime = show ? 0 : parseInt(delayShow, 10)
     const eventTarget = e.currentTarget
 

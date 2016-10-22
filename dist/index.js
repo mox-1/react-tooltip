@@ -137,6 +137,14 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       if (isChanged) {
         this.setState({ ariaProps: newAriaProps });
       }
+      if (this.props.updateContent && typeof this.props.getContent === 'function') {
+        var placeholder = this.props.getContent();
+        var isEmptyTip = typeof placeholder === 'string' && placeholder === '' || placeholder === null;
+        this.setState({
+          placeholder: placeholder,
+          isEmptyTip: isEmptyTip
+        });
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -348,19 +356,13 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       var _state = this.state;
       var delayShow = _state.delayShow;
       var show = _state.show;
+      var placeholder = _state.placeholder;
       var isEmptyTip = _state.isEmptyTip;
       var disable = _state.disable;
-      var _props4 = this.props;
-      var afterShow = _props4.afterShow;
-      var children = _props4.children;
-      var multiline = _props4.multiline;
+      var afterShow = this.props.afterShow;
 
       var delayTime = show ? 0 : parseInt(delayShow, 10);
       var eventTarget = e.currentTarget;
-
-      var originTooltip = e.currentTarget.getAttribute('data-tip');
-      var isMultiline = e.currentTarget.getAttribute('data-multiline') || multiline || false;
-      var placeholder = (0, _getTipContent2.default)(originTooltip, children, undefined, isMultiline);
 
       if (isEmptyTip || disable) return; // if the tooltip is empty, disable the tooltip
       var updateState = function updateState() {
@@ -368,7 +370,6 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
           (function () {
             var isInvisible = !_this6.state.show;
             _this6.setState({
-              placeholder: placeholder,
               currentEvent: e,
               currentTarget: eventTarget,
               show: true
@@ -556,7 +557,8 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
   afterHide: _react.PropTypes.func,
   disable: _react.PropTypes.bool,
   scrollHide: _react.PropTypes.bool,
-  resizeHide: _react.PropTypes.bool
+  resizeHide: _react.PropTypes.bool,
+  updateContent: _react.PropTypes.bool
 }, _class2.defaultProps = {
   resizeHide: true
 }, _temp)) || _class) || _class) || _class) || _class;
