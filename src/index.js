@@ -44,8 +44,7 @@ class ReactTooltip extends Component {
     afterHide: PropTypes.func,
     disable: PropTypes.bool,
     scrollHide: PropTypes.bool,
-    resizeHide: PropTypes.bool,
-    updateContent: PropTypes.bool
+    resizeHide: PropTypes.bool
   };
 
   static defaultProps = {
@@ -116,7 +115,7 @@ class ReactTooltip extends Component {
     if (isChanged) {
       this.setState({ ariaProps: newAriaProps })
     }
-    if (this.props.updateContent && typeof this.props.getContent === 'function') {
+    if (typeof this.props.getContent === 'function') {
       const placeholder = this.props.getContent()
       const isEmptyTip = typeof placeholder === 'string' && placeholder === '' || placeholder === null
       this.setState({

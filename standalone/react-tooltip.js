@@ -437,7 +437,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       if (isChanged) {
         this.setState({ ariaProps: newAriaProps });
       }
-      if (this.props.updateContent && typeof this.props.getContent === 'function') {
+      if (typeof this.props.getContent === 'function') {
         var placeholder = this.props.getContent();
         var isEmptyTip = typeof placeholder === 'string' && placeholder === '' || placeholder === null;
         this.setState({
@@ -857,8 +857,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
   afterHide: _react.PropTypes.func,
   disable: _react.PropTypes.bool,
   scrollHide: _react.PropTypes.bool,
-  resizeHide: _react.PropTypes.bool,
-  updateContent: _react.PropTypes.bool
+  resizeHide: _react.PropTypes.bool
 }, _class2.defaultProps = {
   resizeHide: true
 }, _temp)) || _class) || _class) || _class) || _class;
